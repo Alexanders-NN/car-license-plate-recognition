@@ -69,4 +69,4 @@ json_file = open("model_1.json", "w")
 json_file.write(model_json)
 json_file.close()
 
-model.save_weights("model1.h5")
+model.save_weights("model1.h5py")
