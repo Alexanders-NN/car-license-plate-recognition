@@ -1,0 +1,28 @@
+Ign:1 http://dl.google.com/linux/chrome/deb stable InRelease
+Hit:2 http://dl.google.com/linux/chrome/deb stable Release
+Get:3 http://security.ubuntu.com/ubuntu xenial-security InRelease [102 kB]
+Hit:4 http://ppa.launchpad.net/nginx/stable/ubuntu xenial InRelease
+Hit:6 http://ru.archive.ubuntu.com/ubuntu xenial InRelease
+Hit:7 http://ru.archive.ubuntu.com/ubuntu xenial-updates InRelease
+Hit:8 http://ppa.launchpad.net/webupd8team/atom/ubuntu xenial InRelease
+Hit:9 http://ru.archive.ubuntu.com/ubuntu xenial-backports InRelease
+Hit:10 https://repo.skype.com/deb stable InRelease
+Hit:11 http://ppa.launchpad.net/webupd8team/sublime-text-3/ubuntu xenial InRelease
+Hit:12 http://repo.yandex.ru/yandex-browser/deb beta InRelease
+Hit:13 http://repo.yandex.ru/yandex-disk/deb stable InRelease
+Fetched 102 kB in 1s (99,6 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Calculating upgrade...
+The following packages were automatically installed and are no longer required:
+  dia-libs libcdaudio1 libenca0 libllvm3.8 libslv2-9 linux-headers-4.4.0-31
+  linux-headers-4.4.0-31-generic linux-headers-4.4.0-96
+  linux-headers-4.4.0-96-generic linux-headers-4.4.0-97
+  linux-headers-4.4.0-97-generic linux-image-4.4.0-31-generic
+  linux-image-4.4.0-96-generic linux-image-4.4.0-97-generic
+  linux-image-extra-4.4.0-31-generic linux-image-extra-4.4.0-96-generic
+  linux-image-extra-4.4.0-97-generic
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
