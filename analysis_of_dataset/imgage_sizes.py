@@ -81,11 +81,8 @@ class ShowStatistics(tk.Tk):
 
 
 """if __name__ == "__main__":
-
     path_to_photos = fix_path(sys.argv[1])
-
     report_file_name = fix_path(sys.argv[2])
-
     app = ExampleApp(path_to_photos, report_file_name)
     app.mainloop()
     """
@@ -138,7 +135,8 @@ def main():
             maximum_size = (maximum_size[0], size[1])
 
     for size in sorted(statistics.keys()):
-        print "{} : {}".format(size, statistics[size])
+    	if statistics[size] > 50:
+        	print "{} : {}".format(size, statistics[size])
 
     print "max sizes = {}".format(maximum_size)
 
@@ -150,7 +148,6 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
-
+	main()
 
 
