@@ -91,6 +91,6 @@ json_file = open("model_1.json", "w")
 json_file.write(model_json)
 json_file.close()
 
-model.save_weights("model1.h5py")
+model.save_weights("model1.h5")
 
 #print("Точность работы на тестовых данных: %.2f%%" % (scores[1]*100))
