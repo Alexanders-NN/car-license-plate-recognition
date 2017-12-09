@@ -9,7 +9,7 @@ def rename_image(path):
 	countOfFiles = len(listOfFiles)
 	labels = path.split('/')[-1]
 	for i in range (0, countOfFiles):
-		os.rename(path+ '/' + listOfFiles[i], path + '/' + '_' + str(i) + '.bmp')
+		os.rename(path+ '/' + listOfFiles[i], path + '/' + '_' +  str(i) + '.bmp')
 
 def main():
 	path = sys.argv[1]
