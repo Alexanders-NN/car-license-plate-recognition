@@ -40,14 +40,14 @@ def create_good_file(path, path_for_entry):
             images.append(( obj, get_size(obj) ))
 
     for name, size in images:
-        file.write( "{} 1 0 0 {} {}\n".format(name, size[0], size[1]) )
+        file.write( "{} 1 0 0 {} {}\n".format(os.path.abspath(name), size[0], size[1]) )
     file.close()
     return
 
 def get_bad_data(path, persent):
     img_extension = ['jpg', 'jpeg', 'bmp', 'png']
     result = []    
-    number = persent * len(os.listdir(path)) 
+    number = persent * len( os.listdir(path) ) 
     round(number)
     i = 0
     for obj in os.listdir(path):
@@ -65,18 +65,18 @@ def create_bad_file(path, path_for_entry, number_file):
     path_for_entry = path_for_entry + '/' + 'bad' + '_' + str(number_file) + format
     file = open(path_for_entry, 'w')
     data = []
-    persent = 0.1
 
     for obj in os.listdir(path):
+    	persent = 0.1
         if int(obj) == number_file:
             continue
         elif int(obj) == 21:
             persent = 1
-        obj = os.path.join(path, obj)
+        obj = os.path.join( path, obj )
         data += get_bad_data( obj, persent )
 
     for name in data:
-        file.write( "{}\n".format(name) )
+        file.write( "{}\n".format(os.path.abspath(name)) )
     file.close()
     return
 
@@ -98,7 +98,11 @@ def main():
         bad_report = sys.argv[3]
     except Exception as e:
         print "Expected path to directory for bad data"
-        return
+        
+
+    for obj in os.listdir(path):
+    	obj = os.path.join(path, obj)
+    	create_good_file(obj, good_report)
 
     for i in range(21):
         create_bad_file(path, bad_report, i)
