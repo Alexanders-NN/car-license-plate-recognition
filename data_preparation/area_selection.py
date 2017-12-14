@@ -62,7 +62,7 @@ class ExampleApp(tk.Tk):
         print os.listdir(path_to_dir)
 
         self.photos_list = [os.path.join(self.dir, name) for name in os.listdir(self.dir)]
-        self.report_file = ofstream(filename, 'w')
+        self.report_file = ofstream(filename, 'a')
 
         self.canvas = tk.Canvas(self, width=self.width, height=self.height, cursor="cross", bg="lightblue")
         self.canvas.pack(side="top", fill="both", expand=True)
@@ -73,6 +73,8 @@ class ExampleApp(tk.Tk):
         self.canvas.bind("<ButtonRelease-1>", self.on_button_release)
 
         self.bind("<Tab>", self.next)
+        self.bind( "<space>", self.skip )
+        self.bind( "<q>", self.end )
 
         self.draw_image()
 
@@ -148,6 +150,16 @@ class ExampleApp(tk.Tk):
         else:
         	self.draw_image()
 
+    def skip(self, event):
+    	self.rect = None
+    	self.current_index_photo += 1
+    	self.draw_image()
+
+
+    def end(self, event):
+    	self.report_file.close()
+    	self.destroy()
+
 
 if __name__ == "__main__":
 
@@ -156,4 +168,4 @@ if __name__ == "__main__":
     report_file_name = fix_path(sys.argv[2])
 
     app = ExampleApp(path_to_photos, report_file_name)
-    app.mainloop()
+app.mainloop()

@@ -23,7 +23,7 @@ def new_image(pix, height_img, width_img, height_newimg, width_newimg):
 	return new_img
 
 
-def load_training(path = '/home/alexander/projects/alex_alex/car-license-plate-recognition/datasets/datasets_symbols/train_image.txt'):
+def load_training(path = 'datasets_symbols/train_image.txt'):
 	file = open (path, 'r')	
 	arr_lines = file.readlines()
 	number_img = len(arr_lines)
@@ -42,7 +42,7 @@ def load_training(path = '/home/alexander/projects/alex_alex/car-license-plate-r
 	return arr_image, arr_labels
 
 
-def load_testing(path = '/home/alexander/projects/alex_alex/car-license-plate-recognition/datasets/datasets_symbols/test_image.txt'):
+def load_testing(path = 'datasets_symbols/test_image.txt'):
 	file = open (path, 'r')	
 	arr_lines = file.readlines()
 	number_img = len(arr_lines)
