@@ -17,10 +17,10 @@ training_images = training_images.astype('float32')
 testing_images = testing_images.astype('float32')
 training_images /= 255
 testing_images /= 255
-
+print(training_labels[3])
 training_labels = np_utils.to_categorical(training_labels, 21)
 testing_labels = np_utils.to_categorical(testing_labels, 21)
-
+print(training_labels[3])
 model = Sequential()
 '''
 model.add( Convolution2D(16, (3, 3), input_shape = (50, 70, 1), 
@@ -78,7 +78,7 @@ model.add(Dropout(0.5))
 model.add( Dense(21, activation = 'relu', use_bias = True) )
 
 model.add(Activation('softmax'))
-
+'''
 model.compile( loss = 'categorical_crossentropy', optimizer = 'SGD',
 			metrics = ['accuracy'] )
 
@@ -92,5 +92,5 @@ json_file.write(model_json)
 json_file.close()
 
 model.save_weights("model1.h5")
-
+'''
 #print("Точность работы на тестовых данных: %.2f%%" % (scores[1]*100))

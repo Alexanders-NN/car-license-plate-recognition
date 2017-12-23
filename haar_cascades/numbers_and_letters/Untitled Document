@@ -1,0 +1,24 @@
+'''
+def search_symbols(photo, cascades):
+	number_classes = 21
+	all_cascades = {}
+	symbols = {}
+
+	#for key, name_cascade in cascades:
+	for i in range( number_classes ):
+		new_cascade = cv2.CascadeClassifier( cascades[i] )
+		all_cascades[i] = new_cascade
+
+	image = np.array( photo )
+
+	#Each cascade checks the image
+	for i in range(number_classes):
+		obj = all_cascades[i].detectMultiScale( image, scaleFactor=1.1, minNeighbors=5, minSize=(10, 15) )
+		#if the cascade has found something, then add it to the dictionary and display it on the screen
+		if len(obj) != 0:
+			symbols[i] = obj
+			for (x, y, w, h) in obj:
+				cv2.imshow("", image[y: y + h, x: x + w])
+				cv2.waitKey(0)
+	return symbols
+'''

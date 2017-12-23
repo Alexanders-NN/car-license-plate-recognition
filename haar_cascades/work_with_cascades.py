@@ -47,6 +47,7 @@ def main():
 	img.show()	
 	for obj in os.listdir(path_to_cascades):
 		label = int( obj.split('_')[-1] )
+		#label = 0
 		obj = os.path.join(path_to_cascades, obj)
 		cascade_dict[label] = add_cascade(obj)
 	print( recognize(photo, cascade_dict) )
