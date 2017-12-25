@@ -2,9 +2,10 @@
 
 import os
 import sys
-from PIL import Image, ImageDraw 
+from PIL import Image, ImageDraw
+from keras.preprocessing import image
 import numpy as np
-
+'''
 def pix_to_arr(pix, height, width):
 	matrix = np.empty( (height, width, 1) )
 	for h in range (height):
@@ -59,7 +60,44 @@ def load_testing(path = 'datasets_symbols/test_image.txt'):
 		i += 1
 	file.close()
 	return arr_image, arr_labels
+'''
 
+def load_training(path = 'datasets_symbols/train_image.txt'):
+	file = open (path, 'r')	
+	arr_lines = file.readlines()
+	number_img = len(arr_lines)
+	arr_image = np.empty((number_img, 50, 70, 1)) #!!!
+	arr_labels = np.empty(number_img)
+	i = 0
+	for line in arr_lines:
+		path_image, labels = line.split(' ')
+		img = image.load_img( path_image, target_size = (50, 70), grayscale=True )
+		pixels = image.img_to_array(img)
+		pixels = np.expand_dims(pixels, axis = 0)
+		arr_image[i] = pixels
+		arr_labels[i] = int(labels)
+		i += 1
+	file.close()
+	return arr_image, arr_labels
+
+
+def load_testing(path = 'datasets_symbols/test_image.txt'):
+	file = open (path, 'r')	
+	arr_lines = file.readlines()
+	number_img = len(arr_lines)
+	arr_image = np.empty((number_img, 50, 70, 1)) #!!!
+	arr_labels = np.empty(number_img)
+	i = 0
+	for line in arr_lines:
+		path_image, labels = line.split(' ')
+		img = image.load_img( path_image, target_size = (50, 70), grayscale=True )
+		pixels = image.img_to_array(img)
+		pixels = np.expand_dims(pixels, axis = 0)
+		arr_image[i] = pixels
+		arr_labels[i] = int(labels)
+		i += 1
+	file.close()
+	return arr_image, arr_labels
 
 def main():
 	training_image, training_labels = load_training()

@@ -135,8 +135,8 @@ def main():
             maximum_size = (maximum_size[0], size[1])
 
     for size in sorted(statistics.keys()):
-    	if statistics[size] > 50:
-        	print "{} : {}".format(size, statistics[size])
+    	#if statistics[size] > 50:
+        print "{} : {}".format(size, statistics[size])
 
     print "max sizes = {}".format(maximum_size)
 

@@ -16,16 +16,14 @@ def search_plate(photo, cascades):
 	image = np.array( gray )
 
 	for cascade in all_cascades:
-		plates = cascade.detectMultiScale( image, scaleFactor=1.1, minNeighbors=5, minSize=(10, 15) )
+		plates = cascade.detectMultiScale( image, scaleFactor=1.1, minNeighbors=5 )
 		for (x, y, w, h) in plates:
 				cv2.imshow("", image[y: y + h, x: x + w])
 				cv2.waitKey(0)
-	print(plates)
 	return plates
 
-
 def search_symbols(photo, cascades):
-	number_classes = 2
+	number_classes = 21
 	all_cascades = {}
 	symbols = {}
 
@@ -38,13 +36,14 @@ def search_symbols(photo, cascades):
 
 	#Each cascade checks the image
 	for i in range(number_classes):
-		obj = all_cascades[i].detectMultiScale( image, scaleFactor=1.1, minNeighbors=5, minSize=(10, 15) )
+		obj = all_cascades[i].detectMultiScale( image, scaleFactor=1.1, minNeighbors=5 )
 		#if the cascade has found something, then add it to the dictionary and display it on the screen
 		if len(obj) != 0:
-			symbols[i] = obj
+			symbols[i] = obj[:][0]
 			for (x, y, w, h) in obj:
 				cv2.imshow("", image[y: y + h, x: x + w])
 				cv2.waitKey(0)
+	print(symbols)
 	return symbols
 
 def add_cascade(path):
@@ -69,9 +68,9 @@ def create_new_image(pix, coordinates):
 
 
 def main():
+	path_to_plate_cascades = "full_number/cascade"
+	path_to_symbols_cascades = "symbols/20x30/cascades1"
 	photo = sys.argv[1]
-	path_to_plate_cascades = sys.argv[2]
-	path_to_symbols_cascades = sys.argv[3]
 	
 	plate_cascade = []
 	symbols_cascade_dict = {}
@@ -90,6 +89,7 @@ def main():
 		symbols_cascade_dict[label] = add_cascade(obj)
 
 	plates = search_plate(photo, plate_cascade)
+	print(plates)
 
 	all_symbols = {}
 	i = 1
