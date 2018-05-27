@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for(( i=0; i<21; ++i ))
+for(( i=18; i<21; ++i ))
 do 
 mkdir "cascades2/cascade_$i"
 opencv_traincascade -data "cascades2/cascade_$i" -vec "good_file/sampleses/samples_$i.vec" -bg "bad_file/bad_$i.dat" -numStages 16 -minhitrate 0.999 -maxFalseAlarmRate 0.4 -numPos 500 -numNeg 1000 -w 20 -h 30 -mode ALL -precalcValBufSize 2048 -precalcIdxBufSize 2048

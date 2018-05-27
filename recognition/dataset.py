@@ -62,16 +62,16 @@ def load_testing(path = 'datasets_symbols/test_image.txt'):
 	return arr_image, arr_labels
 '''
 
-def load_training(path = 'datasets_symbols/train_image.txt'):
+def load_training(path = 'datasets_symbols/without_trash/train_image.txt'):
 	file = open (path, 'r')	
 	arr_lines = file.readlines()
 	number_img = len(arr_lines)
-	arr_image = np.empty((number_img, 50, 70, 1)) #!!!
+	arr_image = np.empty((number_img, 70, 50, 1)) #!!!
 	arr_labels = np.empty(number_img)
 	i = 0
 	for line in arr_lines:
 		path_image, labels = line.split(' ')
-		img = image.load_img( path_image, target_size = (50, 70), grayscale=True )
+		img = image.load_img( path_image, target_size = (70, 50), grayscale=True )
 		pixels = image.img_to_array(img)
 		pixels = np.expand_dims(pixels, axis = 0)
 		arr_image[i] = pixels
@@ -81,16 +81,16 @@ def load_training(path = 'datasets_symbols/train_image.txt'):
 	return arr_image, arr_labels
 
 
-def load_testing(path = 'datasets_symbols/test_image.txt'):
+def load_testing(path = 'datasets_symbols/without_trash/test_image.txt'):
 	file = open (path, 'r')	
 	arr_lines = file.readlines()
 	number_img = len(arr_lines)
-	arr_image = np.empty((number_img, 50, 70, 1)) #!!!
+	arr_image = np.empty((number_img, 70, 50, 1)) #!!!
 	arr_labels = np.empty(number_img)
 	i = 0
 	for line in arr_lines:
 		path_image, labels = line.split(' ')
-		img = image.load_img( path_image, target_size = (50, 70), grayscale=True )
+		img = image.load_img( path_image, target_size = (70, 50), grayscale=True )
 		pixels = image.img_to_array(img)
 		pixels = np.expand_dims(pixels, axis = 0)
 		arr_image[i] = pixels

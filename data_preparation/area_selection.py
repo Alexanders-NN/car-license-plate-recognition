@@ -168,4 +168,4 @@ if __name__ == "__main__":
     report_file_name = fix_path(sys.argv[2])
 
     app = ExampleApp(path_to_photos, report_file_name)
-app.mainloop()
+    app.mainloop()

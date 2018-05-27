@@ -1,0 +1,8 @@
+#!/bin/bash
+
+for (( i=0; i<21; ++i ))
+do
+new_file="good_$i.dat"
+new_samples="sampleses/good_$i.vec"
+opencv_createsamples -info $new_file -vec $new_samples -w 10 -h 15
+done

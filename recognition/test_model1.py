@@ -1,20 +1,20 @@
 #!/usr/bin/python3
 
-import os, sys
-from PIL import Image
+import cv2, os, sys
+from PIL import Image, ImageDraw
 import numpy as np
 import dataset
 from keras import Sequential
 from keras.utils import np_utils 
 from keras.models import model_from_json
 from keras.preprocessing import image
-'''
-json_file = open( "model_1.json" )
+
+json_file = open( "nn_model.json" )
 loaded_model = json_file.read()
 json_file.close()
 
 model = model_from_json(loaded_model)
-model.load_weights ("model2.h5")
+model.load_weights ("nn_model.h5")
 
 testing_images, testing_labels = dataset.load_testing()
 
@@ -29,25 +29,27 @@ model.compile( loss = 'categorical_crossentropy', optimizer = 'SGD',
 scores = model.evaluate(testing_images, testing_labels, verbose=0)
 
 print("Точность работы на тестовых данных: %.2f%%" % (scores[1]*100))
-'''
 
+'''
 def main():
 	path_to_photo = sys.argv[1]
-	json_file = open( "model_1.json" )
+	
+	json_file = open( "nn_model.json" )
 	loaded_model = json_file.read()
 	json_file.close()
 
 	model = model_from_json(loaded_model)
-	model.load_weights ("weights/epoch_9.h5")
-
+	#model.load_weights ("weights/epoch_9.h5")
+	model.load_weights ("nn_model.h5")
+	
 	symbols = []
 	i=0
-	
 	for obj in os.listdir(path_to_photo):
-		if i < 5:
+		if i < 21:
 			obj = os.path.join(path_to_photo, obj)
-			img = image.load_img( obj, target_size = (50, 70), grayscale=True )
-			img.show()
+			print(obj)
+			img = image.load_img( obj, target_size = (70, 50), grayscale=True )
+			#img.show()
 			x = image.img_to_array(img)
 			#x = np.array(img)
 			x = np.expand_dims(x, axis = 0)
@@ -62,3 +64,4 @@ def main():
 
 if __name__ == '__main__':
 	main()
+'''

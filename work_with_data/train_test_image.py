@@ -2,13 +2,27 @@
 
 import os
 import sys
+from PIL import Image
 from random import shuffle
 
-def read_file(path):
-	file = open(path, 'r')
+def size(filepath):
+    s = (0, 0)
+    with Image.open(filepath) as img:
+        s = img.size
+    return s
+
+def get_image(path):
+	max_width = 50
+	max_height = 70
+	labels = path.split('/')[-1]
+	format = ".txt"
 	result = []
-	for line in file.readlines():
-		result.append(line)
+	for img in os.listdir(path):
+		img = os.path.join(path, img)
+		size_img = size(img) 
+		if size_img[0] <= max_width and size_img[1] <= max_height:
+			str = os.path.abspath(img) + ' ' + labels + '\n'
+			result.append(str)
 	return result
 
 
@@ -23,10 +37,13 @@ def main():
 
 	all_img = []
 	k = 0.85
-	for obj in os.listdir(path):
+
+
+	for obj in os.listdir(path): 
 		obj = os.path.join(path, obj)
-		if os.path.isfile(obj):
-			all_img += read_file(obj)
+		all_img += get_image(obj)
+
+
 	shuffle(all_img)
 	train_size = len(all_img) * k
 	round(train_size)
@@ -39,4 +56,4 @@ def main():
 	test_file.close()
 
 if __name__ == '__main__':
-    main()
+	main()
